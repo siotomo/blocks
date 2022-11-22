@@ -11,6 +11,7 @@ const App: React.FC = () => {
     [p,p,p],
   ])
   
+  // 全然思ったように動かない...
   React.useEffect(() => {
     setInterval(()=>{
       let prevRow: JSX.Element[];
