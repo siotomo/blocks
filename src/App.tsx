@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 const p = <div className='box present'></div>
 const b = <div className='box blank'></div>
 const App: React.FC = () => {
-  const [num, setNum] = React.useState<number>(1);
+  const [num, setNum] = React.useState<number>(0)
+  const [passedSec, setPassedSec] = React.useState<number>(0);
   const [rows, setRows] = React.useState<JSX.Element[][]>([
     [b,p,p],
     [p,p,p],
@@ -12,17 +13,17 @@ const App: React.FC = () => {
     [p,p,p],
   ])
 
-
-  const plusAndDisplayNum = React.useCallback(() => {
-    console.log(num);
-    setNum(num+1);
-  },[num, setNum])
-
   const timerStart = () => {
+    let sec = 0;
     setInterval(() => {
-      plusAndDisplayNum()
+      sec += 1;
+      setPassedSec(sec)
     }, 1000)
   }
+
+  useEffect(() => {
+    setNum(prev => prev++)
+  }, [passedSec])
 
   return(
     <div>
